@@ -1,0 +1,15 @@
+{
+  "name": "Create JIRA Items",
+  "version": "1.0",
+  "description": "Create JIRA items from a webpage by taking a screenshot!",
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "camera.png",
+    "default_title": "Take a screen shot!"
+  },
+  "manifest_version": 2
+}
