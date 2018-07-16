@@ -17,6 +17,8 @@ chrome.browserAction.onClicked.addListener(function() {
     var targetId = null;
     var displayUrl = null;
 
+    jiraSetup();
+
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
       displayUrl = tabs[0].url;
     });

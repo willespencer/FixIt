@@ -2,9 +2,9 @@
   "name": "Create JIRA Items",
   "version": "1.0",
   "description": "Create JIRA items from a webpage by taking a screenshot!",
-  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "https://yexttest.atlassian.net/"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.js", "jira.js"],
     "persistent": false
   },
   "browser_action": {
