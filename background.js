@@ -17,8 +17,6 @@ chrome.browserAction.onClicked.addListener(function() {
     var targetId = null;
     var displayUrl = null;
 
-    jiraSetup();
-
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
       displayUrl = tabs[0].url;
     });
@@ -45,10 +43,19 @@ chrome.browserAction.onClicked.addListener(function() {
         if (view.location.href == viewTabUrl) {
           view.setScreenshotUrl(screenshotUrl);
           view.setUrl(displayUrl);
+
+          var contentType = 'image/jpeg';
+          var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
+          var blob = b64toBlob(b64, contentType)
+
+          jiraSetup(displayUrl, blob);
+
           break;
         }
       }
     });
+
+
 
     chrome.tabs.create({url: viewTabUrl}, function(tab) {
       targetId = tab.id;
