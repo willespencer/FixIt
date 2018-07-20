@@ -1,15 +1,19 @@
-let takeScreenshot = document.getElementById('takeScreenshot');
+let createItem = document.getElementById('createItem');
+var displayUrl = null
 
-// chrome.storage.sync.get('color', function(data) {
-//   takeScreenshot.style.backgroundColor = data.color;
-//   takeScreenshot.setAttribute('value', data.color);
-// });
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+  displayUrl = tabs[0].url;
+});
 
-takeScreenshot.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
-  });
-};
+createItem.addEventListener("click", function() {
+  var user = document.getElementById("username").value
+  var title = document.getElementById("title").value
+  var desc = document.getElementById("description").value
+  var account = document.getElementById("account").value
+  var component = document.getElementById("component").value
+  var bug = document.getElementById("bug").checked
+
+  var accountID = parseInt(account)
+
+  chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug)
+});

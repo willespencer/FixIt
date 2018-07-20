@@ -1,64 +1,56 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// To make sure we can uniquely identify each screenshot tab, add an id as a
-// query param to the url that displays the screenshot.
-// Note: It's OK that this is a global variable (and not in localStorage),
-// because the event page will stay open as long as any screenshot tabs are
-// open.
-var id = 100;
-
-// Listen for a click on the camera icon. On that click, take a screenshot.
-chrome.browserAction.onClicked.addListener(function() {
-
+function backgroundListener(displayUrl, user, title, desc, account, component, bug) {
   chrome.tabs.captureVisibleTab(function(screenshotUrl) {
-    var viewTabUrl = chrome.extension.getURL('screenshot.html?id=' + id++)
-    var targetId = null;
-    var displayUrl = null;
+    var contentType = 'image/jpeg';
+    var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
+    var blob = b64toBlob(b64, contentType)
 
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-      displayUrl = tabs[0].url;
-    });
+    var projID = 11300 //CONSULTING ID
+    var issueID = 10401 //Software Dev type
 
-    chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps) {
-      // We are waiting for the tab we opened to finish loading.
-      // Check that the tab's id matches the tab we opened,
-      // and that the tab is done loading.
-      if (tabId != targetId || changedProps.status != "complete")
-        return;
+    //Defaults provided no information
+    //User default will be an empty string (no assignee)
+    //Component default is Quick Resposne (15527), account default is Yext (85)
+    if (title == "")
+      title = "Issue created by Chrome Extension"
+    if (desc == "")
+      desc = "See screenshot and attached url"
+    desc += "\nProblem occurs at this URL: " + displayUrl
 
-      // Passing the above test means this is the event we were waiting for.
-      // There is nothing we need to do for future onUpdated events, so we
-      // use removeListner to stop getting called when onUpdated events fire.
-      chrome.tabs.onUpdated.removeListener(listener);
+    if(bug == true)
+    {
+      issueID = 1 //Bug issue type
+    }
 
-      // Look through all views to find the window which will display
-      // the screenshot.  The url of the tab which will display the
-      // screenshot includes a query parameter with a unique id, which
-      // ensures that exactly one view will have the matching URL.
-      var views = chrome.extension.getViews();
-      for (var i = 0; i < views.length; i++) {
-        var view = views[i];
-        if (view.location.href == viewTabUrl) {
-          view.setScreenshotUrl(screenshotUrl);
-          view.setUrl(displayUrl);
+    json = JSON.stringify(createJSON(projID, issueID, user, title, desc, account, component));
 
-          var contentType = 'image/jpeg';
-          var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
-          var blob = b64toBlob(b64, contentType)
-
-          jiraSetup(displayUrl, blob);
-
-          break;
-        }
-      }
-    });
-
-
-
-    chrome.tabs.create({url: viewTabUrl}, function(tab) {
-      targetId = tab.id;
-    });
+    createIssue(json, blob);
   });
-});
+}
+
+//Creates JSON needed to create an issue
+function createJSON(proj, issue, user, title, desc, account, component){
+  json =
+  {
+    "fields": {
+      "project": {
+        "id": proj,
+      },
+      "issuetype": {
+        "id": issue,
+      },
+      "summary": title,
+      "assignee": {
+        "name": user
+      },
+      "description": desc,
+      "customfield_11000": account,
+      "components": [
+        {
+          "id": component
+        }
+      ],
+    }
+  } ;
+
+  return json;
+}

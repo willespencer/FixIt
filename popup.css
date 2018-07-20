@@ -1,0 +1,83 @@
+.Container
+{
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+::-webkit-input-placeholder
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.Container-text
+{
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.Container-title
+{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #e52f4b;
+  margin-bottom: 5px;
+  font-weight: bold
+}
+
+.Container-input
+{
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.Container-bottomWrapper
+{
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.Container-checkbox
+{
+  margin-left: 5px;
+}
+
+.Container-buttonWrapper
+{
+  display: flex;
+  justify-content: center;
+}
+
+.Container-button
+{
+  height: 30px;
+  min-width: 100px;
+  background-color: #e52f4b;
+  border-radius: 20px;
+  border: 1px solid #e52f4b;
+  color: white;
+}
+
+.Container-button:hover
+{
+  background-color: white;
+  color: #e52f4b;
+}
+
+.Container-button:active
+{
+  background-color: white;
+  color: #e52f4b;
+}
+
+.Container-button:focus
+{
+  background-color: white;
+  color: #e52f4b;
+}
+
+.Container--italics
+{
+  font-style: italic;
+}
