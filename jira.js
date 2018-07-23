@@ -1,15 +1,6 @@
-//Calls what is needed for JIRA
-function jiraSetup(url, image) {
-  var xhr = new XMLHttpRequest();
-  createIssue(xhr, url, image);
-}
-
 //Creates an Issue in JIRA
-function createIssue(xhr, url, image){
-  var projID = 11300 //CONSULTING ID
-  var issueID = 10401 //Software Dev type
-  var accountID = 85 //Default Yext Account
-  json = JSON.stringify(createJSON(projID, issueID, accountID, url));
+function createIssue(json, image){
+  var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange=function() {
   if (xhr.readyState === 4){   //if complete
@@ -27,34 +18,9 @@ function createIssue(xhr, url, image){
   xhr.send(json);
 }
 
-//Creates JSON needed to create an issue
-function createJSON(proj, issue, account, url){
-  json =
-  {
-      "fields": {
-          "project": {
-            "id": proj,
-          },
-          "issuetype": {
-            "id": issue,
-          },
-          "summary": "Chrome Extension test issue",
-          "assignee": {
-              "name": "wspencer"
-          },
-          // "reporter": {
-          //     "name": "tterbush"
-          // },
-          "description": "Problem seen at this URL: " + url,
-          "customfield_11000": account,
-      }
-  } ;
-
-  return json;
-}
-
 //Used to log Project and Issue types that can be used to create an Issue
 function printMeta(){
+  var xhr = new XMLHttpRequest();
   xhr.open("GET", "https://yexttest.atlassian.net/rest/api/2/issue/createmeta", false);
 
   xhr.onreadystatechange=function() {
@@ -87,6 +53,7 @@ function printMeta(){
   xhr.send();
 }
 
+//Adds screenshot named "Screenshot.jpeg" to attachment of issue key
 function addAttachment(image, key){
   var xhr = new XMLHttpRequest();
 
@@ -114,9 +81,12 @@ function addAttachment(image, key){
 
 //Retrieve information about issue, used to test the add attachment function
 function getIssue(key){
-  var xhr = new XMLHttpRequest();
+  genericRequest("https://yexttest.atlassian.net/rest/api/2/issue/"+key+"/")
+}
 
-  xhr.open("GET", "https://yexttest.atlassian.net/rest/api/2/issue/"+key+"/", false);
+function genericRequest(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, false);
   xhr.onreadystatechange=function() {
     if (xhr.readyState === 4){   //if complete
       if(xhr.status === 200){  //check if "OK" (200)
