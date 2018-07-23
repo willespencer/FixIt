@@ -13,10 +13,8 @@ function createIssue(xhr, url, image){
 
   xhr.onreadystatechange=function() {
   if (xhr.readyState === 4){   //if complete
-      if(xhr.status === 201){  //check if "OK" (200)
-          console.log("Success", xhr.statusText);
+      if(xhr.status === 201){  //check if "OK" (200
           var result = JSON.parse(xhr.responseText);
-          console.log(result);
           addAttachment(image, result.key);
       } else {
           console.log("Error", xhr.responseText);
@@ -47,7 +45,7 @@ function createJSON(proj, issue, account, url){
           // "reporter": {
           //     "name": "tterbush"
           // },
-          "description": "Problem saw at this URL: " + url,
+          "description": "Problem seen at this URL: " + url,
           "customfield_11000": account,
       }
   } ;
@@ -62,7 +60,6 @@ function printMeta(){
   xhr.onreadystatechange=function() {
     if (xhr.readyState === 4){   //if complete
         if(xhr.status === 200){  //check if "OK" (200)
-          console.log("Success", xhr.statusText);
           var result = JSON.parse(xhr.responseText);
 
           //code for logging projects in createmeta
@@ -123,7 +120,6 @@ function getIssue(key){
   xhr.onreadystatechange=function() {
     if (xhr.readyState === 4){   //if complete
       if(xhr.status === 200){  //check if "OK" (200)
-        console.log("Success", xhr.statusText);
         var result = JSON.parse(xhr.responseText);
         console.log(result)
       }
