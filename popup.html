@@ -8,19 +8,31 @@
       <div class="Container-text">
         <div class="Container-title">Create a Jira Item</div>
         <div class="Container--italics">Screenshot and URL are provided automatically</div>
-        <div class="Container--italics">All fields besides title are optional and have default values</div>
+        <div class="Container--italics">Unless required, fields are optional and have default values</div>
       </div>
 
       <label class="Container-label" for="title">
         <div>Title</div>
         <div class="Container--required">*required</div>
       </label>
-
       <input type="text" class="Container-input" id="title" placeholder="Company - Item Name"></input>
+
       <label class="Container-label" for="username">Assignee (Jira Username)</label>
       <input type="text" class="Container-input" id="username" placeholder="Unassigned by default"></input>
-      <label class="Container-label" for="description">Description</label>
-      <textarea rows="5" class="Container-input" id="description" placeholder="Fill in an item description here"></textarea>
+      <label class="Container-label" for="ycdesk">YC-Desk Ticket</label>
+      <input type="text" class="Container-input" id="ycdesk" placeholder="YC-#####"></input>
+
+
+      <label class="Container-label" for="ask">Ask</label>
+      <textarea rows="2" class="Container-input" id="ask" placeholder="Define item"></textarea>
+      <label class="Container-label" for="context">Context</label>
+      <textarea rows="2" class="Container-input" id="context" placeholder="Additional background and intent"></textarea>
+      <label class="Container-label" for="types">Page Type(s) Affected</label>
+      <textarea rows="2" class="Container-input" id="types" placeholder="Ex. locator/statelist/location page/category"></textarea>
+      <label class="Container-label" for="examples">Example Locations/Links</label>
+      <textarea rows="2" class="Container-input" id="examples" placeholder="Pages site or Knowledge Manager"></textarea>
+      <label class="Container-label" for="analytics">Yext Analytics</label>
+      <textarea rows="2" class="Container-input" id="analytics" placeholder="Analytics"></textarea>
 
       <label class="Container-label" for="account">Account</label>
       <select class="Container-input Container-account" id="account">
@@ -38,9 +50,14 @@
         <option value="15582">Farmer's Maintenance</option>
       </select>
 
+      <label class="Container-label" for="date">Due Date</label>
+      <input type="date" class="Container-input" id="date"></input>
+
       <div class="Container-bottomWrapper">
         <label class="Container-label" for="bug">Bug Item?</label>
         <input type="checkbox"  class="Container-checkbox" id="bug"/>
+        <label class="Container-label" for="prod">Straight to Prod?</label>
+        <input type="checkbox"  class="Container-checkbox" id="prod"/>
       </div>
 
       <div class="Container-buttonWrapper">
