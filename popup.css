@@ -1,6 +1,6 @@
 .Container
 {
-  min-width: 300px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -24,6 +24,17 @@
   color: #e52f4b;
   margin-bottom: 5px;
   font-weight: bold
+}
+
+.Container-label
+{
+  display: flex;
+}
+
+.Container--required
+{
+  padding-left: 5px;
+  color: #e52f4b;
 }
 
 .Container-input
@@ -75,6 +86,19 @@
 {
   background-color: white;
   color: #e52f4b;
+}
+
+.Container-error
+{
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+  color: #e52f4b;
+}
+
+.Container--display
+{
+  display: block;
 }
 
 .Container--italics

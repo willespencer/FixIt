@@ -8,17 +8,20 @@
       <div class="Container-text">
         <div class="Container-title">Create a Jira Item</div>
         <div class="Container--italics">Screenshot and URL are provided automatically</div>
-        <div class="Container--italics">All fields are optional and have default values</div>
+        <div class="Container--italics">All fields besides title are optional and have default values</div>
       </div>
 
+      <label class="Container-label" for="title">
+        <div>Title</div>
+        <div class="Container--required">*required</div>
+      </label>
+
+      <input type="text" class="Container-input" id="title" placeholder="Company - Item Name"></input>
       <label class="Container-label" for="username">Assignee (Jira Username)</label>
       <input type="text" class="Container-input" id="username" placeholder="Unassigned by default"></input>
-      <label class="Container-label" for="title">Title</label>
-      <input type="text" class="Container-input" id="title" placeholder="Company - Item Name"></input>
       <label class="Container-label" for="description">Description</label>
       <textarea rows="5" class="Container-input" id="description" placeholder="Fill in an item description here"></textarea>
 
-      <!-- Add Accounts! -->
       <label class="Container-label" for="account">Account</label>
       <select class="Container-input Container-account" id="account">
         <option value="85">Yext</option>
@@ -43,6 +46,8 @@
       <div class="Container-buttonWrapper">
         <button class="Container-button" id="createItem">Create Item</button>
       </div>
+
+      <div class="Container-error" id="error">Title is required. Please provide a title and resubmit.</div>
     </div>
 
     <script src="popup.js"></script>

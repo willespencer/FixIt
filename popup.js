@@ -6,8 +6,8 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 });
 
 createItem.addEventListener("click", function() {
-  var user = document.getElementById("username").value
   var title = document.getElementById("title").value
+  var user = document.getElementById("username").value
   var desc = document.getElementById("description").value
   var account = document.getElementById("account").value
   var component = document.getElementById("component").value
@@ -15,5 +15,11 @@ createItem.addEventListener("click", function() {
 
   var accountID = parseInt(account)
 
-  chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug)
+  if(title == "")
+    document.getElementById("error").classList.add("Container--display")
+  else {
+    document.getElementById("error").classList.remove("Container--display")
+    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug)
+  }
+
 });
