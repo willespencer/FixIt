@@ -14,7 +14,7 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
       title = "Issue created by Chrome Extension"
     if (desc == "")
       desc = "See screenshot and attached url"
-    desc += "\nProblem occurs at this URL: " + displayUrl
+    desc += "\n*Example* : " + displayUrl
 
     if(bug == true)
     {

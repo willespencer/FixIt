@@ -8,10 +8,17 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 createItem.addEventListener("click", function() {
   var title = document.getElementById("title").value
   var user = document.getElementById("username").value
-  var desc = document.getElementById("description").value
   var account = document.getElementById("account").value
   var component = document.getElementById("component").value
   var bug = document.getElementById("bug").checked
+
+  var descParts = document.getElementsByClassName("Container-description")
+  var desc = "";
+  for(var i=0; i < descParts.length; i++)
+  {
+    desc += "*"+descParts[i].name + "* : " + descParts[i].value + "\n\n";
+  }
+
 
   var accountID = parseInt(account)
 
