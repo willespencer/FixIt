@@ -12,7 +12,7 @@ createItem.addEventListener("click", function() {
   var component = document.getElementById("component").value
   var bug = document.getElementById("bug").checked
   var due = document.getElementById("date").value;
-  console.log("Date", due)
+  var ycdesk = document.getElementById("ycdesk").value;
 
   var descParts = document.getElementsByClassName("Container-description")
   var desc = "";
@@ -31,7 +31,7 @@ createItem.addEventListener("click", function() {
     document.getElementById("error").classList.add("Container--display")
   else {
     document.getElementById("error").classList.remove("Container--display")
-    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug, due)
+    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug, due, ycdesk)
   }
 
 });

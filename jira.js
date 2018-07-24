@@ -1,5 +1,5 @@
 //Creates an Issue in JIRA
-function createIssue(json, image){
+function createIssue(json, image, ycdesk){
   var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange=function() {
@@ -7,6 +7,8 @@ function createIssue(json, image){
       if(xhr.status === 201){  //check if "OK" (200
           var result = JSON.parse(xhr.responseText);
           addAttachment(image, result.key);
+          if(ycdesk != "")
+            createLink(result.key, ycdesk);
       } else {
           console.log("Error", xhr.responseText);
       }
@@ -82,6 +84,36 @@ function addAttachment(image, key){
 //Retrieve information about issue, used to test the add attachment function
 function getIssue(key){
   genericRequest("https://yexttest.atlassian.net/rest/api/2/issue/"+key+"/")
+}
+
+function createLink(ownIssue, outIssue){
+  var json = {
+    "type": {
+      "name": "Relates",
+    },
+    "inwardIssue": {
+      "key": ownIssue,
+    },
+    "outwardIssue": {
+      "key": outIssue,
+    }
+  } ;
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange=function() {
+  if (xhr.readyState === 4){   //if complete
+      if(xhr.status === 201){  //check if "OK" (201)
+
+      } else {
+          console.log("Error", xhr.responseText);
+      }
+    }
+  }
+
+  xhr.open("POST", "https://yexttest.atlassian.net/rest/api/2/issueLink/");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.send(JSON.stringify(json));
 }
 
 function genericRequest(url) {

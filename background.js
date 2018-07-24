@@ -1,4 +1,4 @@
-function backgroundListener(displayUrl, user, title, desc, account, component, bug, due) {
+function backgroundListener(displayUrl, user, title, desc, account, component, bug, due, ycdesk) {
   chrome.tabs.captureVisibleTab(function(screenshotUrl) {
     var contentType = 'image/jpeg';
     var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
@@ -21,7 +21,7 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
 
     json = JSON.stringify(createJSON(projID, issueID, user, title, desc, account, component, due));
 
-    createIssue(json, blob);
+    createIssue(json, blob, ycdesk);
   });
 }
 
