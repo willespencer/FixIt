@@ -54,6 +54,12 @@ function createJSON(proj, issue, user, title, desc, account, component, due){
   {
     json["fields"].duedate = due;
   }
+  if (issue == "1")
+  {
+    json["transition"] = {
+      "id": 51 //TO DO status ID
+    }
+  }
 
   return json;
 }
