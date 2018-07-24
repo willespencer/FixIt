@@ -8,7 +8,6 @@
       <div class="Container-text">
         <div class="Container-title">Create a Jira Item</div>
         <div class="Container--italics">Screenshot and URL are provided automatically</div>
-        <div class="Container--italics">Unless required, fields are optional and have default values</div>
       </div>
 
       <label class="Container-label" for="title">
@@ -23,11 +22,17 @@
       <input type="text" class="Container-input" id="ycdesk" placeholder="YCDESK-####"></input>
 
 
-      <label class="Container-label" for="ask">Ask</label>
-      <textarea rows="2" class="Container-input Container-description" id="ask" placeholder="Define item" name="Ask"></textarea>
+      <label class="Container-label" for="ask">
+        <div>Ask</div>
+        <div class="Container--required">*required</div>
+      </label>
+      <textarea rows="1" class="Container-input Container-description" id="ask" placeholder="Define item" name="Ask"></textarea>
       <label class="Container-label" for="context">Context</label>
       <textarea rows="2" class="Container-input Container-description" id="context" placeholder="Additional background and intent" name="Context"></textarea>
-      <label class="Container-label" for="types">Page Type(s) Affected</label>
+      <label class="Container-label" for="types">
+        <div>Page Type(s) Affected</div>
+        <div class="Container--required">*required</div>
+      </label>
       <input class="Container-input Container-description" id="types" placeholder="Ex. locator/statelist/location page/category" name="Page Type(s) Affected"></textarea>
       <label class="Container-label" for="analytics">Yext Analytics</label>
       <input class="Container-input Container-description" id="analytics" placeholder="Analytics" name="Analytics"></textarea>
@@ -49,20 +54,24 @@
       </select>
 
       <label class="Container-label" for="date">Due Date</label>
-      <input type="date" class="Container-input" id="date"></input>
+      <input type="date" class="Container-input Container-date" id="date"></input>
 
       <div class="Container-bottomWrapper">
-        <label class="Container-label" for="bug">Bug Item?</label>
-        <input type="checkbox"  class="Container-checkbox" id="bug"/>
-        <label class="Container-label" for="prod">Straight to Prod?</label>
-        <input type="checkbox"  class="Container-checkbox" id="prod"/>
+        <div class="Container-half">
+          <label class="Container-label" for="bug">Bug Item?</label>
+          <input type="checkbox"  class="Container-checkbox" id="bug"/>
+        </div>
+        <div class="Container-half">
+          <label class="Container-label" for="prod">Straight to Prod?</label>
+          <input type="checkbox"  class="Container-checkbox" id="prod"/>
+        </div>
       </div>
 
       <div class="Container-buttonWrapper">
         <button class="Container-button" id="createItem">Create Item</button>
       </div>
 
-      <div class="Container-error" id="error">Title is required. Please provide a title and resubmit.</div>
+      <div class="Container-error" id="error">Please provide required parameters and resubmit.</div>
     </div>
 
     <script src="popup.js"></script>

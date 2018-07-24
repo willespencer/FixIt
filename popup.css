@@ -13,7 +13,7 @@
 
 .Container-text
 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -41,12 +41,26 @@
 {
   margin-bottom: 10px;
   border: 1px solid #ccc;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.Container-date
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .Container-bottomWrapper
 {
   margin-bottom: 10px;
   display: flex;
+}
+
+.Container-half
+{
+  width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .Container-checkbox
