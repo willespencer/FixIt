@@ -11,12 +11,17 @@ createItem.addEventListener("click", function() {
   var account = document.getElementById("account").value
   var component = document.getElementById("component").value
   var bug = document.getElementById("bug").checked
+  var due = document.getElementById("date").value;
+  console.log("Date", due)
 
   var descParts = document.getElementsByClassName("Container-description")
   var desc = "";
   for(var i=0; i < descParts.length; i++)
   {
-    desc += "*"+descParts[i].name + "* : " + descParts[i].value + "\n\n";
+    if(descParts[i].value.length > 0)
+    {
+      desc += "*"+descParts[i].name + "* : " + descParts[i].value + "\n\n";
+    }
   }
 
 
@@ -26,7 +31,7 @@ createItem.addEventListener("click", function() {
     document.getElementById("error").classList.add("Container--display")
   else {
     document.getElementById("error").classList.remove("Container--display")
-    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug)
+    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug, due)
   }
 
 });

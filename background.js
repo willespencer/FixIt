@@ -1,4 +1,4 @@
-function backgroundListener(displayUrl, user, title, desc, account, component, bug) {
+function backgroundListener(displayUrl, user, title, desc, account, component, bug, due) {
   chrome.tabs.captureVisibleTab(function(screenshotUrl) {
     var contentType = 'image/jpeg';
     var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
@@ -12,8 +12,6 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
     //Component default is Quick Resposne (15527), account default is Yext (85)
     if (title == "")
       title = "Issue created by Chrome Extension"
-    if (desc == "")
-      desc = "See screenshot and attached url"
     desc += "\n*Example* : " + displayUrl
 
     if(bug == true)
@@ -21,14 +19,14 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
       issueID = 1 //Bug issue type
     }
 
-    json = JSON.stringify(createJSON(projID, issueID, user, title, desc, account, component));
+    json = JSON.stringify(createJSON(projID, issueID, user, title, desc, account, component, due));
 
     createIssue(json, blob);
   });
 }
 
 //Creates JSON needed to create an issue
-function createJSON(proj, issue, user, title, desc, account, component){
+function createJSON(proj, issue, user, title, desc, account, component, due){
   json =
   {
     "fields": {
@@ -51,6 +49,11 @@ function createJSON(proj, issue, user, title, desc, account, component){
       ],
     }
   } ;
+
+  if (due != "")
+  {
+    json["fields"].duedate = due;
+  }
 
   return json;
 }
