@@ -82,6 +82,10 @@
   border-radius: 20px;
   border: 1px solid #e52f4b;
   color: white;
+  position: relative;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .Container-button:hover
@@ -102,12 +106,40 @@
   color: #e52f4b;
 }
 
+.Container-button:after {
+    content: "";
+    background: #e52f4b;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.Container-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
 .Container-error
 {
   display: none;
   margin-top: 10px;
   text-align: center;
   color: #e52f4b;
+}
+
+.Container-success
+{
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+  color: #57cf2a;
 }
 
 .Container--display

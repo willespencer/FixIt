@@ -26,6 +26,7 @@ createItem.addEventListener("click", function() {
   else {
     desc = createDescription(prod)
     document.getElementById("error").classList.remove("Container--display")
+    document.getElementById("success").classList.add("Container--display")
     chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug, due, ycdesk)
   }
 
