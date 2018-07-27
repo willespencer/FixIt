@@ -130,7 +130,6 @@ function autocomplete(inp, map) {
       var x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
-        console.log("DOWN")
         /*If the arrow DOWN key is pressed,
         increase the currentFocus variable:*/
         currentFocus++;
@@ -152,7 +151,6 @@ function autocomplete(inp, map) {
       }
   });
   function addActive(x) {
-    console.log("ACTIVE")
     /*a function to classify an item as "active":*/
     if (!x) return false;
     /*start by removing the "active" class on all items:*/
