@@ -10,9 +10,7 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
     //Defaults provided no information
     //User default will be an empty string (no assignee)
     //Component default is Quick Resposne (15527), account default is Yext (85)
-    if (title == "")
-      title = "Issue created by Chrome Extension"
-    desc += "\n*Example* : " + displayUrl
+    desc += "*Example* : " + displayUrl
 
     if(bug == true)
     {

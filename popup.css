@@ -1,6 +1,7 @@
 .Container
 {
   min-width: 350px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;

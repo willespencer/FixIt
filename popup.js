@@ -21,6 +21,7 @@ createItem.addEventListener("click", function() {
 
   var accountID = parseInt(account)
 
+
   if(title == "" || ask == "" || types == "") //required parameters
     document.getElementById("error").classList.add("Container--display")
   else {
@@ -40,7 +41,11 @@ function createDescription(prod)
   {
     if(descParts[i].value.length > 0)
     {
-      description += "*"+descParts[i].name + "* : " + descParts[i].value + "\n\n";
+      description += "*"+descParts[i].name + ":* " + descParts[i].value + "\n\n";
+    }
+    if(descParts[i].id == "ask")
+    {
+      description +=  "!Screenshot.jpeg|thumbnail!\n\n" //embeds screenshot into ask
     }
   }
   if(prod)
