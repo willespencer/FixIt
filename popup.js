@@ -11,7 +11,6 @@ createItem.addEventListener("click", function() {
   var title = document.getElementById("title").value
   var ask = document.getElementById("ask").value
   var types = document.getElementById("types").value
-  var user = document.getElementById("username").value
   var account = document.getElementById("account").name
   var component = document.getElementById("component").value
   var bug = document.getElementById("bug").checked
@@ -28,7 +27,7 @@ createItem.addEventListener("click", function() {
     desc = createDescription(prod)
     document.getElementById("error").classList.remove("Container--display")
     document.getElementById("success").classList.add("Container--display")
-    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, user, title, desc, accountID, component, bug, due, ycdesk)
+    chrome.extension.getBackgroundPage().backgroundListener(displayUrl, title, desc, accountID, component, bug, due, ycdesk)
   }
 
 });
@@ -84,7 +83,6 @@ for(var input of inputs)
 
 function retrieveData(element){
   chrome.storage.sync.get(element.id, function(obj) {
-    console.log(obj)
     var json = JSON.parse(obj[element.id])
     if(json.val != undefined)
     {

@@ -1,4 +1,4 @@
-function backgroundListener(displayUrl, user, title, desc, account, component, bug, due, ycdesk) {
+function backgroundListener(displayUrl, title, desc, account, component, bug, due, ycdesk) {
   chrome.tabs.captureVisibleTab(function(screenshotUrl) {
     var contentType = 'image/jpeg';
     var b64 = screenshotUrl.substring(screenshotUrl.indexOf(",") + 1) //removes  data:image/jpeg;base64 from beginning of string
@@ -8,7 +8,6 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
     var issueID = 10401 //Software Dev type
 
     //Defaults provided no information
-    //User default will be an empty string (no assignee)
     //Component default is Quick Resposne (15527), account default is Yext (85)
     desc += "*Example* : " + displayUrl
 
@@ -17,14 +16,14 @@ function backgroundListener(displayUrl, user, title, desc, account, component, b
       issueID = 1 //Bug issue type
     }
 
-    json = JSON.stringify(createJSON(projID, issueID, user, title, desc, account, component, due));
+    json = JSON.stringify(createJSON(projID, issueID, title, desc, account, component, due));
 
     createIssue(json, blob, ycdesk);
   });
 }
 
 //Creates JSON needed to create an issue
-function createJSON(proj, issue, user, title, desc, account, component, due){
+function createJSON(proj, issue, title, desc, account, component, due){
   json =
   {
     "fields": {
@@ -35,9 +34,6 @@ function createJSON(proj, issue, user, title, desc, account, component, due){
         "id": issue,
       },
       "summary": title,
-      "assignee": {
-        "name": user
-      },
       "description": desc,
       "customfield_11000": account,
       "components": [
