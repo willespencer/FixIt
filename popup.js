@@ -27,6 +27,7 @@ createItem.addEventListener("click", function() {
     desc = createDescription(prod)
     document.getElementById("error").classList.remove("Container--display")
     document.getElementById("success").classList.add("Container--display")
+    removeData();
     chrome.extension.getBackgroundPage().backgroundListener(displayUrl, title, desc, accountID, component, bug, due, ycdesk)
   }
 
@@ -83,16 +84,32 @@ for(var input of inputs)
 
 function retrieveData(element){
   chrome.storage.sync.get(element.id, function(obj) {
-    var json = JSON.parse(obj[element.id])
-    if(json.val != undefined)
+    if(obj[element.id])
     {
-      element.value = json.val;
-      if(element.classList.contains("Container-checkbox") && json.val == "on")
+      var json = JSON.parse(obj[element.id])
+      if(json.val != undefined)
       {
-        element.checked = true;
+        element.value = json.val;
+        if(element.classList.contains("Container-checkbox") && json.val == "on")
+        {
+          element.checked = true;
+        }
       }
     }
   });
+}
+
+function removeData(){
+  var inputs = document.getElementsByClassName("Container-saved");
+  for(var input of inputs)
+  {
+    if(input.id != "component")
+      input.value = "";
+    if (input.classList.contains("Container-checkbox"))
+      input.checked = false;
+
+    chrome.storage.sync.clear();
+  }
 }
 
 function addAccountOptions()
