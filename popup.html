@@ -14,36 +14,36 @@
         <div>Title</div>
         <div class="Container--required">*required</div>
       </label>
-      <input type="text" class="Container-input" id="title" placeholder="Company - Item Name"></input>
+      <input type="text" class="Container-input Container-saved" id="title" placeholder="Company - Item Name"></input>
 
       <label class="Container-label" for="account">Account</label>
       <div class="Container-autocomplete">
-        <input class="Container-input Container-account" id="account" type="text" placeholder="Yext" name="85">
+        <input class="Container-input Container-saved Container-account" id="account" type="text" placeholder="Yext" name="85">
       </div>
 
       <label class="Container-label" for="username">Assignee (Jira Username)</label>
-      <input type="text" class="Container-input" id="username" placeholder="Unassigned by default"></input>
+      <input type="text" class="Container-input Container-saved" id="username" placeholder="Unassigned by default"></input>
       <label class="Container-label" for="ycdesk">Key to Linked YCDESK Ticket</label>
-      <input type="text" class="Container-input" id="ycdesk" placeholder="YCDESK-####"></input>
+      <input type="text" class="Container-input Container-saved" id="ycdesk" placeholder="YCDESK-####"></input>
 
 
       <label class="Container-label" for="ask">
         <div>Ask</div>
         <div class="Container--required">*required</div>
       </label>
-      <input class="Container-input Container-description" id="ask" placeholder="Define item" name="Ask"></textarea>
+      <input class="Container-input Container-saved Container-description" id="ask" placeholder="Define item" name="Ask"></textarea>
       <label class="Container-label" for="context">Context</label>
-      <textarea rows="2" class="Container-input Container-description" id="context" placeholder="Additional background and intent" name="Context"></textarea>
+      <textarea rows="2" class="Container-input Container-saved Container-description" id="context" placeholder="Additional background and intent" name="Context"></textarea>
       <label class="Container-label" for="types">
         <div>Page Type(s) Affected</div>
         <div class="Container--required">*required</div>
       </label>
-      <input class="Container-input Container-description" id="types" placeholder="Ex. locator/statelist/location page/category" name="Page Type(s) Affected"></textarea>
+      <input class="Container-input Container-saved Container-description" id="types" placeholder="Ex. locator/statelist/location page/category" name="Page Type(s) Affected (besides current page)"></textarea>
       <label class="Container-label" for="analytics">Yext Analytics</label>
-      <input class="Container-input Container-description" id="analytics" placeholder="Analytics" name="Analytics"></textarea>
+      <input class="Container-input Container-saved Container-description" id="analytics" placeholder="Analytics" name="Analytics"></textarea>
 
       <label class="Container-label" for="component">Component</label>
-      <select class="Container-input" id="component">
+      <select class="Container-input Container-saved" id="component">
         <option value="15527">Quick Response</option>
         <option value="11700">R&D</option>
         <option value="11300">Client Maintenance</option>
@@ -51,16 +51,16 @@
       </select>
 
       <label class="Container-label" for="date">Due Date</label>
-      <input type="date" class="Container-input Container-date" id="date"></input>
+      <input type="date" class="Container-input Container-saved Container-date" id="date"></input>
 
       <div class="Container-bottomWrapper">
         <div class="Container-half">
           <label class="Container-label" for="bug">Bug Item?</label>
-          <input type="checkbox"  class="Container-checkbox" id="bug"/>
+          <input type="checkbox"  class="Container-checkbox Container-saved" id="bug"/>
         </div>
         <div class="Container-half">
           <label class="Container-label" for="prod">Straight to Prod?</label>
-          <input type="checkbox"  class="Container-checkbox" id="prod"/>
+          <input type="checkbox"  class="Container-checkbox Container-saved" id="prod"/>
         </div>
       </div>
 

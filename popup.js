@@ -56,6 +56,47 @@ function createDescription(prod)
   return description
 }
 
+var inputs = document.getElementsByClassName("Container-saved");
+for(var input of inputs)
+{
+  //listener to store data on change
+  input.addEventListener('change', function (evt) {
+    var val = this.value;
+    var id = this.id;
+
+    //special checkbox conditionals
+    if (this.classList.contains("Container-checkbox"))
+      if (this.checked == false)
+        val = "off"
+      else
+        val = "on"
+
+    var testPrefs = JSON.stringify({
+        'val': val
+    });
+    var jsonfile = {};
+    jsonfile[id] = testPrefs;
+
+    chrome.storage.sync.set(jsonfile);
+  });
+  retrieveData(input);
+}
+
+function retrieveData(element){
+  chrome.storage.sync.get(element.id, function(obj) {
+    console.log(obj)
+    var json = JSON.parse(obj[element.id])
+    if(json.val != undefined)
+    {
+      element.value = json.val;
+      if(element.classList.contains("Container-checkbox") && json.val == "on")
+      {
+        element.checked = true;
+      }
+    }
+  });
+}
+
 function addAccountOptions()
 {
   var xhr = new XMLHttpRequest();
