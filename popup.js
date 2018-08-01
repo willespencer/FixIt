@@ -164,7 +164,7 @@ function autocomplete(inp, map) {
       for (var key of map.keys()) {
         /*check if the item starts with the same letters as the text field value:*/
         if (map.get(key).substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          if(currCount <= 11) //max number of items to display at one time
+          if(currCount <= 9) //max number of items to display at one time
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           b.id = key;
