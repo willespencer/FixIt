@@ -1,7 +1,7 @@
 {
   "name": "Create JIRA Items",
-  "version": "1.0",
-  "description": "Create JIRA items from a webpage by taking a screenshot!",
+  "version": "1.1",
+  "description": "Create Yext Jira items from a webpage by filling in information on the popup!",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "https://yexttest.atlassian.net/"],
   "background": {
     "scripts": ["background.js", "jira.js"],
@@ -9,7 +9,7 @@
   },
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "Take a screen shot!"
+    "default_title": "FixIt!"
   },
   "icons": {
     "16": "images/pages16.png",
