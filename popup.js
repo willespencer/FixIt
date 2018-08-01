@@ -172,12 +172,12 @@ function autocomplete(inp, map) {
           b.innerHTML = "<strong>" + map.get(key).substr(0, val.length) + "</strong>";
           b.innerHTML += map.get(key).substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + map.get(key) + "'>";
+          b.innerHTML += "<input name='" + key + "' type='hidden' value='" + map.get(key) + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
               b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
-              inp.name = b.id;
+              inp.name = this.getElementsByTagName("input")[0].name;
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/
               closeAllLists();
