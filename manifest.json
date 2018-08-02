@@ -1,5 +1,5 @@
 {
-  "name": "Create JIRA Items",
+  "name": "FixIt!",
   "version": "1.1",
   "description": "Create Yext Jira items from a webpage by filling in information on the popup!",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "https://yexttest.atlassian.net/"],
